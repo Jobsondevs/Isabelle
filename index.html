@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Aniversário de Isa</title>
+<title>Dra. Isabelle</title>
 
 <!-- Fonte elegante do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
   body {
     display: flex;
@@ -33,14 +34,11 @@
   }
 
   .card {
-    width: 90%;             /* ocupa 90% da tela */
-    max-width: 600px;       /* mas nunca mais que 600px */
-    height: auto;           /* altura automática */
-    aspect-ratio: 6/5;      /* mantém a proporção */
+    width: 600px;
+    height: 550px;
     perspective: 1000px;
     z-index: 2;
   }
-
   .card__inner {
     width: 100%;
     height: 100%;
@@ -52,11 +50,9 @@
     cursor: pointer;
     background: white;
   }
-
   .card.is-flipped .card__inner {
     transform: rotateY(180deg);
   }
-
   .card__face {
     position: absolute;
     inset: 0;
@@ -147,8 +143,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40%;             /* antes 400px */
-    max-width: 200px;       /* limite */
+    width: 400px;
     height: auto;
     border-radius: 20px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.25);
@@ -158,8 +153,8 @@
   .bg-images.show img {
     animation-play-state: running;
   }
-  .bg-images img:first-child { left: 20px; }
-  .bg-images img:last-child { right: 20px; animation-delay: 3s; }
+  .bg-images img:first-child { left: 40px; }
+  .bg-images img:last-child { right: 40px; animation-delay: 3s; }
 
   @keyframes float {
     0% { transform: translateY(-50%); }
@@ -170,30 +165,164 @@
   /* Estilo do gif da menina voando */
   .flying-girl {
     position: absolute;
-    width: 150px;   /* reduzi um pouco pro mobile */
+    width: 150px;
     height: auto;
     top: 50px;
     left: 50px;
     z-index: 10;
-    display: none;
-  }
-
-  /* --- Responsividade --- */
-  @media (max-width: 600px) {
-    .front h1, .front h2 {
-      font-size: 22px;
-    }
-    .back h1 {
-      font-size: 22px;
-    }
-    .back {
-      font-size: 16px;
-      padding: 16px;
-    }
-    .back .subtitle {
-      font-size: 20px;
-    }
+    display: none; /* inicialmente escondido */
   }
 </style>
+</head>
+<body>
 
+<div class="bg-images" id="bg">
+  <img src="imagens/imagemisa2.jpg" alt="Foto esquerda">
+  <img src="imagens/imagemIsa1.jpg" alt="Foto direita">
+</div>
 
+<div class="card" id="card">
+  <div class="card__inner">
+    <div class="card__face front">
+      <h1>Clique Aqui!</h1>
+      <img src="imagens/doguinho.webp" alt="Foto da Isa" />
+      <h2>Por favor!!</h2>
+    </div>
+    <div class="card__face back">
+      <h1 id="title"></h1>
+      <h1 id="title2"></h1>
+      <p id="msg"></p>
+      <div class="subtitle" id="subtitle"></div>
+    </div>
+  </div>
+</div>
+
+<!-- GIF da menina -->
+<img src="imag/Isaebalao.png" class="flying-girl" id="girl">
+
+<audio id="music" src="musica/feliz_aniversario_abencoado.mp3.mp3"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+const card = document.getElementById('card');
+const titleEl = document.getElementById('title');
+const title2El = document.getElementById('title2');
+const msgEl = document.getElementById('msg');
+const subtitleEl = document.getElementById('subtitle');
+const bg = document.getElementById('bg');
+const music = document.getElementById('music');
+const girl = document.getElementById('girl');
+
+const titleText = "FELIZ ANIVERSÁRIO, ISAAA!!!";
+const title2Text = "🎉🎉🎉🎉🎉";
+const message = "Quero te desejar muitos e muitos anos de vida, cheios de alegrias, conquistas e sorrisos verdadeiros. Sou imensamente grato a Deus por ter colocado você no meu caminho, e não tenho dúvidas de que você merece sempre o melhor que a vida pode oferecer. Que cada dia seja repleto de bênçãos, amor e momentos inesquecíveis na presença de Jesus.";
+const extraMsg1 = "Aproveite seu dia!";
+const extraMsg2 = "Com carinho, Jobson. ❤️🥳";
+const subtitleText = "🎉🎂🎁🎈🥳";
+
+let i = 0, k = 0, j = 0;
+let typeTitleTimeout, typeTitle2Timeout, typeMsgTimeout, extra2Timeout;
+
+// Variáveis da menina voando
+let x = 50, y = 50, dx = 1.5, dy = 1;
+
+function moveGirl() {
+  const maxX = window.innerWidth - girl.offsetWidth;
+  const maxY = window.innerHeight - girl.offsetHeight;
+
+  x += dx;
+  y += dy;
+
+  if (x <= 0 || x >= maxX) dx *= -1;
+  if (y <= 0 || y >= maxY) dy *= -1;
+
+  girl.style.left = x + 'px';
+  girl.style.top = y + 'px';
+
+  requestAnimationFrame(moveGirl);
+}
+
+card.addEventListener('click', ()=>{
+  card.classList.toggle('is-flipped');
+
+  clearTimeout(typeTitleTimeout);
+  clearTimeout(typeTitle2Timeout);
+  clearTimeout(typeMsgTimeout);
+  clearTimeout(extra2Timeout);
+
+  if(card.classList.contains('is-flipped')){
+    bg.classList.add("show");
+    confetti({particleCount:150, spread:70, origin:{y:0.6}});
+    setTimeout(()=>{ confetti({particleCount:100, spread:60, origin:{x:0.15, y:0.6}}); }, 600);
+    setTimeout(()=>{ confetti({particleCount:100, spread:60, origin:{x:0.85, y:0.6}}); }, 1000);
+    music.play();
+    girl.style.display = "block"; // mostra a menina
+    moveGirl(); // inicia animação
+    i = 0; k = 0; j = 0;
+    titleEl.textContent = '';
+    title2El.textContent = '';
+    msgEl.textContent = '';
+    subtitleEl.textContent = '';
+    document.getElementById('extra1')?.remove();
+    document.getElementById('extra2')?.remove();
+    typeTitle();
+  } else {
+    titleEl.textContent = '';
+    title2El.textContent = '';
+    msgEl.textContent = '';
+    subtitleEl.textContent = '';
+    document.getElementById('extra1')?.remove();
+    document.getElementById('extra2')?.remove();
+    bg.classList.remove("show");
+    music.pause();
+    music.currentTime = 0;
+    girl.style.display = "none"; // esconde a menina
+  }
+});
+
+function typeTitle(){
+  if(i <= titleText.length){
+    titleEl.textContent = titleText.slice(0,i);
+    i++;
+    typeTitleTimeout = setTimeout(typeTitle,50);
+  } else {
+    typeTitle2();
+  }
+}
+
+function typeTitle2(){
+  if(k <= title2Text.length){
+    title2El.textContent = title2Text.slice(0,k);
+    k++;
+    typeTitle2Timeout = setTimeout(typeTitle2,50);
+  } else {
+    setTimeout(typeMsg,500);
+  }
+}
+
+function typeMsg(){
+  if(j <= message.length){
+    msgEl.textContent = message.slice(0,j);
+    j++;
+    typeMsgTimeout = setTimeout(typeMsg,40);
+  } else {
+    subtitleEl.textContent = subtitleText;
+
+    const p1 = document.createElement('p');
+    p1.id = "extra1";
+    p1.style.marginTop="10px";
+    p1.textContent = extraMsg1;
+    msgEl.parentNode.appendChild(p1);
+
+    extra2Timeout = setTimeout(()=>{
+      const p2 = document.createElement('p');
+      p2.id = "extra2";
+      p2.style.marginTop="10px";
+      p2.textContent = extraMsg2;
+      msgEl.parentNode.appendChild(p2);
+    }, 500);
+  }
+}
+</script>
+</body>
+</html>
