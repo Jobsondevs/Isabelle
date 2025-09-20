@@ -198,7 +198,7 @@
 </div>
 
 <!-- GIF da menina -->
-<img src="imag/Isaebalao.png" class="flying-girl" id="girl">
+<img src="imagens/Isaebalao.png" class="flying-girl" id="girl">
 
 <audio id="music" src="musica/feliz_aniversario_abencoado.mp3.mp3"></audio>
 
@@ -224,11 +224,12 @@ let i = 0, k = 0, j = 0;
 let typeTitleTimeout, typeTitle2Timeout, typeMsgTimeout, extra2Timeout;
 
 // Variáveis da menina voando
-let x = 50, y = 50, dx = 1.5, dy = 1;
+let x = 50, y = 50, dx = 0.5, dy = 0.5;
 
 function moveGirl() {
+  const minY = 0; 
+  const maxY = window.innerHeight - girl.offsetHeight; 
   const maxX = window.innerWidth - girl.offsetWidth;
-  const maxY = window.innerHeight - girl.offsetHeight;
 
   x += dx;
   y += dy;
