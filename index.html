@@ -118,14 +118,14 @@
     margin-bottom: 5px;
   }
   .back p {
-    line-height: 1.6;
+    line-height: 1.5;
     text-align: justify;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* mais compacto */
   }
   .back .subtitle {
     font-size: 28px;
     color: #ff4b5c;
-    margin-top: 20px;
+    margin-top: 10px; /* mais próximo */
   }
 
   .bg-images {
@@ -311,14 +311,14 @@ function typeMsg(){
 
     const p1 = document.createElement('p');
     p1.id = "extra1";
-    p1.style.marginTop="10px";
+    p1.style.marginTop="5px"; // mais próximo
     p1.textContent = extraMsg1;
     msgEl.parentNode.appendChild(p1);
 
     extra2Timeout = setTimeout(()=>{
       const p2 = document.createElement('p');
       p2.id = "extra2";
-      p2.style.marginTop="10px";
+      p2.style.marginTop="30px"; // mais afastado para baixo
       p2.textContent = extraMsg2;
       msgEl.parentNode.appendChild(p2);
     }, 500);
@@ -327,4 +327,3 @@ function typeMsg(){
 </script>
 </body>
 </html>
-
