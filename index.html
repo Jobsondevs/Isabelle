@@ -5,173 +5,196 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Dra. Isabelle</title>
 
-<!-- Fonte elegante do Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow: hidden;
-    position: relative;
-    background-image: url('imagens/Dente2.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  position: relative;
+  background-image: url('imagens/Dente2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-  body::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: inherit;
-    filter: blur(5px);
-    z-index: 0;
-  }
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(5px);
+  z-index: 0;
+}
 
-  .card {
-    width: 600px;
-    height: 550px;
-    perspective: 1000px;
-    z-index: 2;
-  }
-  .card__inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    border-radius: 16px;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
-    cursor: pointer;
-    background: white;
-  }
-  .card.is-flipped .card__inner {
-    transform: rotateY(180deg);
-  }
-  .card__face {
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 24px;
-  }
+.card {
+  width: 600px;
+  height: 550px;
+  perspective: 1000px;
+  z-index: 2;
+  cursor: pointer;
+}
+.card__inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+  background: white;
+}
+.card.is-flipped .card__inner {
+  transform: rotateY(180deg);
+}
+.card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+}
 
-  .front {
-    background: linear-gradient(135deg,#ffd9d9,#fff);
-    color: #333;
-    font-size: 32px;
-    text-align: center;
-  }
-  .front img {
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
-  .front h1 {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    font-size: 36px;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-  }
-  .front h2 {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    font-size: 36px;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-  }
+.front {
+  background: linear-gradient(135deg,#ffd9d9,#fff);
+  color: #333;
+  font-size: 32px;
+  text-align: center;
+}
+.front img {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.front h1 {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+.front h2 {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
 
-  .back {
-    background: #fff;
-    color: #333;
-    transform: rotateY(180deg);
-    border: 1px solid #f0e9e9;
-    text-align: center;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    font-family: 'Dancing Script', cursive;
-    font-size: 20px;
-  }
-  .back h1 {
-    font-family: Georgia, serif;
-    font-size: 30px;
-    color: #ff4b5c;
-    margin-bottom: 5px;
-  }
-  .back p {
-    line-height: 1.5;
-    text-align: justify;
-    margin-bottom: 10px; /* mais compacto */
-  }
-  .back .subtitle {
-    font-size: 28px;
-    color: #ff4b5c;
-    margin-top: 10px; /* mais próximo */
-  }
+.back {
+  background: #fff;
+  color: #333;
+  transform: rotateY(180deg);
+  border: 1px solid #f0e9e9;
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
+}
+.back h1 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  color: #ff4b5c;
+  margin-bottom: 5px;
+}
+.back p {
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+.back .subtitle {
+  font-size: 28px;
+  color: #ff4b5c;
+  margin-top: 10px;
+}
 
-  .bg-images {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease;
-  }
-  .bg-images.show {
-    opacity: 1;
-  }
-  .bg-images img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 400px;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    animation: float 6s ease-in-out infinite;
-    animation-play-state: paused;
-  }
-  .bg-images.show img {
-    animation-play-state: running;
-  }
-  .bg-images img:first-child { left: 40px; }
-  .bg-images img:last-child { right: 40px; animation-delay: 3s; }
+.bg-images {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+.bg-images.show {
+  opacity: 1;
+}
+.bg-images img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  animation: float 6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.bg-images.show img {
+  animation-play-state: running;
+}
+.bg-images img:first-child { left: 40px; }
+.bg-images img:last-child { right: 40px; animation-delay: 3s; }
 
-  @keyframes float {
-    0% { transform: translateY(-50%); }
-    50% { transform: translateY(-70%); }
-    100% { transform: translateY(-50%); }
-  }
+@keyframes float {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(-70%); }
+  100% { transform: translateY(-50%); }
+}
 
-  /* Estilo do gif da menina voando */
-  .flying-girl {
-    position: absolute;
-    width: 150px;
-    height: auto;
-    top: 50px;
-    left: 50px;
-    z-index: 10;
-    display: none; /* inicialmente escondido */
-  }
+.flying-girl {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  top: 50px;
+  left: 50px;
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+  transition: left 0.5s ease, top 0.5s ease;
+}
+
+.message-bubble {
+  position: relative;
+  max-width: 500px;
+  padding: 15px 20px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(63, 63, 63, 0.3);
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  color: #ff4b5c;
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 5;
+  display: none;
+}
+.message-bubble.show {
+  display: block;
+  opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -197,9 +220,8 @@
   </div>
 </div>
 
-<!-- GIF da menina -->
+<div class="message-bubble" id="messageBubble"></div>
 <img src="imagens/Isaebalao.png" class="flying-girl" id="girl">
-
 <audio id="music" src="musica/feliz_aniversario_abencoado.mp3.mp3"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -212,118 +234,166 @@ const subtitleEl = document.getElementById('subtitle');
 const bg = document.getElementById('bg');
 const music = document.getElementById('music');
 const girl = document.getElementById('girl');
+const messageBubble = document.getElementById('messageBubble');
 
 const titleText = "FELIZ ANIVERSÁRIO, ISAAA!!!";
 const title2Text = "🎉🎉🎉🎉🎉";
-const message = "Quero te desejar muitos e muitos anos de vida, cheios de alegrias, conquistas e sorrisos verdadeiros. Sou imensamente grato a Deus por ter colocado você no meu caminho, e não tenho dúvidas de que você merece sempre o melhor que a vida pode oferecer. Que cada dia seja repleto de bênçãos, amor e momentos inesquecíveis na presença de Jesus. PARABÉNS!!!";
-const extraMsg1 = "Aproveite seu dia!";
+const message = "Senhorita, Isabelle Lima. Descobri que hoje é o seu aniversário e eu não poderia deixar esse momento passar... Quero te desejar muitos e muitos anos de vida, repletos de alegrias, conquistas e sorrisos sinceros. Que cada dia seja cheio de bênçãos, amor e momentos inesquecíveis na companhia de Jesus. Você merece o melhor, e o verdadeiro melhor só existe na presença do nosso Senhor. Saiba que sou profundamente grato a Deus por ter colocado você em meu caminho. Aproveite seu dia! PARABÉNS!!!";
+
+const extraMsg1 = "”Que o Senhor te abençoe e te guarde; que Ele faça resplandecer o Seu rosto sobre ti e te dê paz.” — Números 6:24-26.";
 const extraMsg2 = "Com carinho, Jobson. ❤️🥳";
-const subtitleText = "🎉🎂🎁🎈🥳";
+const subtitleText = "";
 
-let i = 0, k = 0, j = 0;
-let typeTitleTimeout, typeTitle2Timeout, typeMsgTimeout, extra2Timeout;
+const bubbleMessages = [
+  "Jesus te ama!",
+  "Seus pais te amam!",
+  "Sorria! O Senhor cuida de você a cada passo!",
+  "Que seu voo seja cada vez mais alto!",
+  "Que seu dia seja abençoado!",
+  "Você é especial!❤️"
+];
 
-// Variáveis da menina voando
-let x = 50, y = 50, dx = 0.5, dy = 0.5;
+let i=0,k=0,j=0;
+let typeTitleTimeout,typeTitle2Timeout,typeMsgTimeout,extra2Timeout,bubbleTimeout;
+let bubbleIndex=0;
 
-function moveGirl() {
-  const minY = 0; 
-  const maxY = window.innerHeight - girl.offsetHeight; 
-  const maxX = window.innerWidth - girl.offsetWidth;
+let x=50,y=50,dx=0.5,dy=0.5;
+let animationId=null;
 
-  x += dx;
-  y += dy;
+function moveGirl(){
+  const maxX=window.innerWidth-girl.offsetWidth;
+  const maxY=window.innerHeight-girl.offsetHeight;
 
-  if (x <= 0 || x >= maxX) dx *= -1;
-  if (y <= 0 || y >= maxY) dy *= -1;
+  x+=dx;
+  y+=dy;
 
-  girl.style.left = x + 'px';
-  girl.style.top = y + 'px';
+  if(x<=0||x>=maxX) dx*=-1;
+  if(y<=0||y>=maxY) dy*=-1;
 
-  requestAnimationFrame(moveGirl);
+  girl.style.left=x+'px';
+  girl.style.top=y+'px';
+
+  animationId=requestAnimationFrame(moveGirl);
 }
 
-card.addEventListener('click', ()=>{
+// Balão com fade
+function showNextBubble(){
+  if(!card.classList.contains('is-flipped')) return; 
+
+  messageBubble.style.opacity=0;
+  setTimeout(()=>{
+    bubbleIndex=(bubbleIndex+1)%bubbleMessages.length;
+    messageBubble.textContent=bubbleMessages[bubbleIndex];
+    messageBubble.style.opacity=1;
+  },500);
+
+  bubbleTimeout = setTimeout(showNextBubble,4500);
+}
+
+card.addEventListener('click',()=>{
   card.classList.toggle('is-flipped');
 
   clearTimeout(typeTitleTimeout);
   clearTimeout(typeTitle2Timeout);
   clearTimeout(typeMsgTimeout);
   clearTimeout(extra2Timeout);
+  clearTimeout(bubbleTimeout);
+
+  titleEl.textContent='';
+  title2El.textContent='';
+  msgEl.textContent='';
+  subtitleEl.textContent='';
+
+  const existing1=document.getElementById("extra1");
+  if(existing1) existing1.remove();
+  const existing2=document.getElementById("extra2");
+  if(existing2) existing2.remove();
+
+  messageBubble.style.opacity=0;
+  messageBubble.style.display='none';
 
   if(card.classList.contains('is-flipped')){
     bg.classList.add("show");
     confetti({particleCount:150, spread:70, origin:{y:0.6}});
-    setTimeout(()=>{ confetti({particleCount:100, spread:60, origin:{x:0.15, y:0.6}}); }, 600);
-    setTimeout(()=>{ confetti({particleCount:100, spread:60, origin:{x:0.85, y:0.6}}); }, 1000);
+    setTimeout(()=>{ confetti({particleCount:100, spread:60, origin:{x:0.15, y:0.6}}); },600);
+    setTimeout(()=>{ confetti({particleCount:100, spread:60, origin:{x:0.85, y:0.6}}); },1000);
     music.play();
-    girl.style.display = "block"; // mostra a menina
-    moveGirl(); // inicia animação
-    i = 0; k = 0; j = 0;
-    titleEl.textContent = '';
-    title2El.textContent = '';
-    msgEl.textContent = '';
-    subtitleEl.textContent = '';
-    document.getElementById('extra1')?.remove();
-    document.getElementById('extra2')?.remove();
+    girl.style.display="block";
+
+    if(animationId){ cancelAnimationFrame(animationId); animationId=null; }
+    moveGirl();
+
+    i=0;k=0;j=0;
     typeTitle();
-  } else {
-    titleEl.textContent = '';
-    title2El.textContent = '';
-    msgEl.textContent = '';
-    subtitleEl.textContent = '';
-    document.getElementById('extra1')?.remove();
-    document.getElementById('extra2')?.remove();
+
+    bubbleIndex=-1;
+    messageBubble.style.display='block'; // garante que o balão aparece
+    showNextBubble();
+  }else{
     bg.classList.remove("show");
     music.pause();
-    music.currentTime = 0;
-    girl.style.display = "none"; // esconde a menina
+    music.currentTime=0;
+    girl.style.display="none";
+    messageBubble.style.opacity=0;
+    messageBubble.style.display='none';
+    clearTimeout(bubbleTimeout);
+
+    if(animationId){ cancelAnimationFrame(animationId); animationId=null; }
   }
 });
 
+girl.addEventListener('click',()=>{
+  const maxX=window.innerWidth-girl.offsetWidth;
+  const maxY=window.innerHeight-girl.offsetHeight;
+
+  x=Math.min(Math.max(x+(Math.random()*200-100),0),maxX);
+  y=Math.min(Math.max(y+(Math.random()*200-100),0),maxY);
+
+  girl.style.left=x+'px';
+  girl.style.top=y+'px';
+});
+
 function typeTitle(){
-  if(i <= titleText.length){
-    titleEl.textContent = titleText.slice(0,i);
+  if(i<=titleText.length){
+    titleEl.textContent=titleText.slice(0,i);
     i++;
-    typeTitleTimeout = setTimeout(typeTitle,50);
-  } else {
-    typeTitle2();
-  }
+    typeTitleTimeout=setTimeout(typeTitle,50);
+  }else{ typeTitle2(); }
 }
 
 function typeTitle2(){
-  if(k <= title2Text.length){
-    title2El.textContent = title2Text.slice(0,k);
+  if(k<=title2Text.length){
+    title2El.textContent=title2Text.slice(0,k);
     k++;
-    typeTitle2Timeout = setTimeout(typeTitle2,50);
-  } else {
-    setTimeout(typeMsg,500);
-  }
+    typeTitle2Timeout=setTimeout(typeTitle2,50);
+  }else{ setTimeout(typeMsg,500); }
 }
 
 function typeMsg(){
-  if(j <= message.length){
-    msgEl.textContent = message.slice(0,j);
+  if(j<=message.length){
+    msgEl.textContent=message.slice(0,j);
     j++;
-    typeMsgTimeout = setTimeout(typeMsg,40);
-  } else {
-    subtitleEl.textContent = subtitleText;
+    typeMsgTimeout=setTimeout(typeMsg,40);
+  }else{
+    subtitleEl.textContent=subtitleText;
 
-    const p1 = document.createElement('p');
-    p1.id = "extra1";
-    p1.style.marginTop="5px"; // mais próximo
-    p1.textContent = extraMsg1;
+    const p1=document.createElement('p');
+    p1.id="extra1";
+    p1.style.marginTop="5px";
+    p1.textContent=extraMsg1;
     msgEl.parentNode.appendChild(p1);
 
-    extra2Timeout = setTimeout(()=>{
-      const p2 = document.createElement('p');
-      p2.id = "extra2";
-      p2.style.marginTop="30px"; // mais afastado para baixo
-      p2.textContent = extraMsg2;
+    extra2Timeout=setTimeout(()=>{
+      const p2=document.createElement('p');
+      p2.id="extra2";
+      p2.style.marginTop="30px";
+      p2.textContent=extraMsg2;
+      p2.style.textAlign="left";
       msgEl.parentNode.appendChild(p2);
-    }, 500);
+    },500);
   }
 }
 </script>
 </body>
 </html>
+
